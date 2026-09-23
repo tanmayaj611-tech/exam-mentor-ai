@@ -14,7 +14,345 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_messages: {
+        Row: {
+          created_at: string
+          id: string
+          parts: Json
+          role: string
+          sdk_message_id: string | null
+          thread_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          parts?: Json
+          role: string
+          sdk_message_id?: string | null
+          thread_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          parts?: Json
+          role?: string
+          sdk_message_id?: string | null
+          thread_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "chat_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_threads: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mistakes: {
+        Row: {
+          correct_answer: string
+          created_at: string
+          error_type: string
+          explanation: string | null
+          id: string
+          question: string
+          revise_on: string
+          revised: boolean
+          student_answer: string | null
+          subject_id: string | null
+          topic: string
+          user_id: string
+        }
+        Insert: {
+          correct_answer: string
+          created_at?: string
+          error_type?: string
+          explanation?: string | null
+          id?: string
+          question: string
+          revise_on?: string
+          revised?: boolean
+          student_answer?: string | null
+          subject_id?: string | null
+          topic: string
+          user_id: string
+        }
+        Update: {
+          correct_answer?: string
+          created_at?: string
+          error_type?: string
+          explanation?: string | null
+          id?: string
+          question?: string
+          revise_on?: string
+          revised?: boolean
+          student_answer?: string | null
+          subject_id?: string | null
+          topic?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          daily_hours: number
+          exam_date: string | null
+          full_name: string | null
+          id: string
+          language: string
+          last_active_date: string | null
+          level: number
+          streak_days: number
+          target_exam: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          daily_hours?: number
+          exam_date?: string | null
+          full_name?: string | null
+          id: string
+          language?: string
+          last_active_date?: string | null
+          level?: number
+          streak_days?: number
+          target_exam?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          daily_hours?: number
+          exam_date?: string | null
+          full_name?: string | null
+          id?: string
+          language?: string
+          last_active_date?: string | null
+          level?: number
+          streak_days?: number
+          target_exam?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quiz_questions: {
+        Row: {
+          correct_option: number
+          created_at: string
+          difficulty: number
+          explanation: string
+          id: string
+          is_correct: boolean | null
+          options: Json
+          position: number
+          question: string
+          quiz_id: string
+          shortcut: string | null
+          student_answer: number | null
+          topic: string | null
+          user_id: string
+        }
+        Insert: {
+          correct_option: number
+          created_at?: string
+          difficulty?: number
+          explanation?: string
+          id?: string
+          is_correct?: boolean | null
+          options?: Json
+          position: number
+          question: string
+          quiz_id: string
+          shortcut?: string | null
+          student_answer?: number | null
+          topic?: string | null
+          user_id: string
+        }
+        Update: {
+          correct_option?: number
+          created_at?: string
+          difficulty?: number
+          explanation?: string
+          id?: string
+          is_correct?: boolean | null
+          options?: Json
+          position?: number
+          question?: string
+          quiz_id?: string
+          shortcut?: string | null
+          student_answer?: number | null
+          topic?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "quizzes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quizzes: {
+        Row: {
+          accuracy: number | null
+          correct_count: number
+          created_at: string
+          difficulty: number
+          id: string
+          incorrect_count: number
+          mode: string
+          status: string
+          subject_id: string | null
+          submitted_at: string | null
+          time_taken_seconds: number | null
+          topic: string
+          total_questions: number
+          unattempted_count: number
+          user_id: string
+        }
+        Insert: {
+          accuracy?: number | null
+          correct_count?: number
+          created_at?: string
+          difficulty?: number
+          id?: string
+          incorrect_count?: number
+          mode?: string
+          status?: string
+          subject_id?: string | null
+          submitted_at?: string | null
+          time_taken_seconds?: number | null
+          topic: string
+          total_questions?: number
+          unattempted_count?: number
+          user_id: string
+        }
+        Update: {
+          accuracy?: number | null
+          correct_count?: number
+          created_at?: string
+          difficulty?: number
+          id?: string
+          incorrect_count?: number
+          mode?: string
+          status?: string
+          subject_id?: string | null
+          submitted_at?: string | null
+          time_taken_seconds?: number | null
+          topic?: string
+          total_questions?: number
+          unattempted_count?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      study_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          minutes: number
+          session_date: string
+          subject_id: string | null
+          topic: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          minutes?: number
+          session_date?: string
+          subject_id?: string | null
+          topic?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          minutes?: number
+          session_date?: string
+          subject_id?: string | null
+          topic?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      subjects: {
+        Row: {
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          id: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      topics: {
+        Row: {
+          id: string
+          name: string
+          sort_order: number
+          subject_id: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          sort_order?: number
+          subject_id: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          sort_order?: number
+          subject_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "topics_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
