@@ -15,7 +15,9 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedMistakesRouteImport } from './routes/_authenticated/mistakes'
 import { Route as AuthenticatedProgressRouteImport } from './routes/_authenticated/progress'
+import { Route as AuthenticatedRevisionRouteImport } from './routes/_authenticated/revision'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedStudyPlanRouteImport } from './routes/_authenticated/study-plan'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedCoachIndexRouteImport } from './routes/_authenticated/coach.index'
 import { Route as AuthenticatedCoachThreadIdRouteImport } from './routes/_authenticated/coach.$threadId'
@@ -51,9 +53,19 @@ const AuthenticatedProgressRoute = AuthenticatedProgressRouteImport.update({
   path: '/progress',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRevisionRoute = AuthenticatedRevisionRouteImport.update({
+  id: '/revision',
+  path: '/revision',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStudyPlanRoute = AuthenticatedStudyPlanRouteImport.update({
+  id: '/study-plan',
+  path: '/study-plan',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
@@ -91,7 +103,9 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/mistakes': typeof AuthenticatedMistakesRoute
   '/progress': typeof AuthenticatedProgressRoute
+  '/revision': typeof AuthenticatedRevisionRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/study-plan': typeof AuthenticatedStudyPlanRoute
   '/api/chat': typeof ApiChatRoute
   '/coach/$threadId': typeof AuthenticatedCoachThreadIdRoute
   '/practice/$quizId': typeof AuthenticatedPracticeQuizIdRoute
@@ -104,7 +118,9 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/mistakes': typeof AuthenticatedMistakesRoute
   '/progress': typeof AuthenticatedProgressRoute
+  '/revision': typeof AuthenticatedRevisionRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/study-plan': typeof AuthenticatedStudyPlanRoute
   '/api/chat': typeof ApiChatRoute
   '/coach/$threadId': typeof AuthenticatedCoachThreadIdRoute
   '/practice/$quizId': typeof AuthenticatedPracticeQuizIdRoute
@@ -119,7 +135,9 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/mistakes': typeof AuthenticatedMistakesRoute
   '/_authenticated/progress': typeof AuthenticatedProgressRoute
+  '/_authenticated/revision': typeof AuthenticatedRevisionRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/study-plan': typeof AuthenticatedStudyPlanRoute
   '/api/chat': typeof ApiChatRoute
   '/_authenticated/coach/$threadId': typeof AuthenticatedCoachThreadIdRoute
   '/_authenticated/practice/$quizId': typeof AuthenticatedPracticeQuizIdRoute
@@ -134,7 +152,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/mistakes'
     | '/progress'
+    | '/revision'
     | '/settings'
+    | '/study-plan'
     | '/api/chat'
     | '/coach/$threadId'
     | '/practice/$quizId'
@@ -147,7 +167,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/mistakes'
     | '/progress'
+    | '/revision'
     | '/settings'
+    | '/study-plan'
     | '/api/chat'
     | '/coach/$threadId'
     | '/practice/$quizId'
@@ -161,7 +183,9 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/mistakes'
     | '/_authenticated/progress'
+    | '/_authenticated/revision'
     | '/_authenticated/settings'
+    | '/_authenticated/study-plan'
     | '/api/chat'
     | '/_authenticated/coach/$threadId'
     | '/_authenticated/practice/$quizId'
@@ -220,11 +244,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProgressRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/revision': {
+      id: '/_authenticated/revision'
+      path: '/revision'
+      fullPath: '/revision'
+      preLoaderRoute: typeof AuthenticatedRevisionRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/study-plan': {
+      id: '/_authenticated/study-plan'
+      path: '/study-plan'
+      fullPath: '/study-plan'
+      preLoaderRoute: typeof AuthenticatedStudyPlanRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/api/chat': {
@@ -269,7 +307,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMistakesRoute: typeof AuthenticatedMistakesRoute
   AuthenticatedProgressRoute: typeof AuthenticatedProgressRoute
+  AuthenticatedRevisionRoute: typeof AuthenticatedRevisionRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedStudyPlanRoute: typeof AuthenticatedStudyPlanRoute
   AuthenticatedCoachThreadIdRoute: typeof AuthenticatedCoachThreadIdRoute
   AuthenticatedPracticeQuizIdRoute: typeof AuthenticatedPracticeQuizIdRoute
   AuthenticatedCoachIndexRoute: typeof AuthenticatedCoachIndexRoute
@@ -280,7 +320,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedMistakesRoute: AuthenticatedMistakesRoute,
   AuthenticatedProgressRoute: AuthenticatedProgressRoute,
+  AuthenticatedRevisionRoute: AuthenticatedRevisionRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedStudyPlanRoute: AuthenticatedStudyPlanRoute,
   AuthenticatedCoachThreadIdRoute: AuthenticatedCoachThreadIdRoute,
   AuthenticatedPracticeQuizIdRoute: AuthenticatedPracticeQuizIdRoute,
   AuthenticatedCoachIndexRoute: AuthenticatedCoachIndexRoute,

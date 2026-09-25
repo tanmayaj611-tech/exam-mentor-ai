@@ -212,6 +212,9 @@ export const generateQuiz = createServerFn({ method: "POST" })
       "Every question must have exactly 4 options and exactly one correct option.",
       "For numerical questions, solve them fully yourself and verify the arithmetic before you output them; the correct option must match your verified answer.",
       "Explanations must be step-by-step and beginner friendly. Add a 'shortcut' only when a genuine exam shortcut exists.",
+      "MATHS FORMATTING (strict): write every formula, fraction, power, root, ratio and equation in LaTeX — inline maths inside $...$ and a whole step on its own line inside $$...$$.",
+      'Examples: "Simplify $\\\\frac{3}{4} + \\\\frac{5}{6}$", options like "$\\\\frac{19}{12}$", steps like "$$SI = \\\\frac{P \\\\times R \\\\times T}{100}$$".',
+      "Never write bare ^, /, sqrt() or underscores for maths outside LaTeX, and never leave LaTeX commands outside $ delimiters. Escape backslashes correctly so the JSON stays valid.",
       "Do not claim any question is a previous-year question.",
       'Respond with JSON only, in this exact shape: {"questions":[{"question":"...","options":["a","b","c","d"],"correct_option":0,"explanation":"...","shortcut":"..."}]}',
     ].join("\n");

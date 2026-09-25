@@ -1,3 +1,4 @@
+import { MathBlock, MathText } from "@/components/math-text";
 import { ErrorBlock, LoadingBlock } from "@/components/page-states";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -92,14 +93,14 @@ function QuizPage() {
               ) : (
                 <XCircle className="mt-0.5 size-5 shrink-0 text-destructive" />
               )}
-              <p className="font-medium">Q{x.position}. {x.question}</p>
+              <p className="font-medium">Q{x.position}. <MathText>{x.question}</MathText></p>
             </div>
             <p className="mt-2 text-sm">
-              Your answer: <b>{x.student_answer != null ? x.options[x.student_answer] : "Not attempted"}</b> · Correct:{" "}
-              <b>{x.correct_option != null ? x.options[x.correct_option] : "—"}</b>
+              Your answer: <b>{x.student_answer != null ? <MathText>{x.options[x.student_answer]}</MathText> : "Not attempted"}</b> · Correct:{" "}
+              <b>{x.correct_option != null ? <MathText>{x.options[x.correct_option]}</MathText> : "—"}</b>
             </p>
-            <p className="mt-2 whitespace-pre-wrap text-sm text-muted-foreground">{x.explanation}</p>
-            {x.shortcut && <p className="mt-2 text-sm"><b>Shortcut:</b> {x.shortcut}</p>}
+            <MathBlock className="mt-2 text-sm text-muted-foreground">{x.explanation}</MathBlock>
+            {x.shortcut && <p className="mt-2 text-sm"><b>Shortcut:</b> <MathText>{x.shortcut}</MathText></p>}
           </div>
         ))}
       </div>
@@ -131,7 +132,7 @@ function QuizPage() {
         ))}
       </div>
       <div className="panel rounded-xl p-5">
-        <p className="font-medium">Q{x.position}. {x.question}</p>
+        <p className="font-medium">Q{x.position}. <MathText>{x.question}</MathText></p>
         <div className="mt-4 space-y-2">
           {x.options.map((opt, i) => (
             <button
@@ -143,7 +144,7 @@ function QuizPage() {
               )}
             >
               <span className="mr-2 font-semibold">{String.fromCharCode(65 + i)}.</span>
-              {opt}
+              <MathText>{opt}</MathText>
             </button>
           ))}
         </div>
