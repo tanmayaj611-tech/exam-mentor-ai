@@ -38,7 +38,7 @@ function renderMath(value: string, display: boolean): string | null {
 }
 
 /** Renders plain text mixed with LaTeX math ($...$, $$...$$, \(...\), \[...\]) plus **bold** segments. */
-export function MathText({ children, className }: { children?: string | null; className?: string }) {
+export function MathText({ children, className }: { children?: string | null | undefined; className?: string }) {
   const tokens = useMemo(() => tokenize(children ?? ""), [children]);
 
   return (
@@ -73,7 +73,7 @@ function renderInlineText(value: string) {
 }
 
 /** Block variant that preserves line breaks in step-by-step solutions. */
-export function MathBlock({ children, className }: { children?: string | null; className?: string }) {
+export function MathBlock({ children, className }: { children?: string | null | undefined; className?: string }) {
   const lines = (children ?? "").split("\n");
   return (
     <div className={cn("space-y-1", className)}>
