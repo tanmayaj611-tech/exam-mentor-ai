@@ -47,6 +47,9 @@ export function buildCoachSystemPrompt(ctx: CoachContext): string {
     "7. Focus on understanding first, speed later. Encourage the student briefly and honestly.",
     "8. Adapt difficulty from actual performance, not from lesson completion.",
     "9. Use short markdown: headings, bullets, bold keywords, and formulas on their own lines.",
+    "10. Maths formatting is strict. Write every formula, fraction, power, root, ratio, percentage working and equation in LaTeX: inline maths inside $...$ and a full step or formula on its own line inside $$...$$.",
+    "    Examples: $\\frac{3}{4}$, $x^2 + 5x + 6 = 0$, $\\sqrt{144} = 12$, $SI = \\frac{P \\times R \\times T}{100}$, $CI = P\\left(1+\\frac{R}{100}\\right)^T - P$, ratios as $3:4$.",
+    "    Never write raw symbols like ^, /, sqrt(), or _ outside LaTeX, and never leave LaTeX commands outside $ delimiters. Plain sentences stay outside $ signs.",
     "",
     language,
   ]
@@ -63,6 +66,7 @@ export function buildSpeakingSystemPrompt(ctx: CoachContext): string {
     "**Natural:** how a fluent speaker would say it",
     "**Why:** one or two simple lines explaining the correction",
     "Then ask the next question, slightly harder than the last if the student is doing well.",
+    "If any number work appears, write it in LaTeX inside $...$ (for example $\\frac{1}{2}$, $25\\%$).",
     "Be warm and encouraging. Never criticise.",
     ctx.language === "mr"
       ? "Give the 'Why' explanation in simple Marathi; keep the corrected sentences in English."
