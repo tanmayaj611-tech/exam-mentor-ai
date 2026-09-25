@@ -42,10 +42,10 @@ export const updateProfile = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => ProfileUpdate.parse(input))
   .handler(async ({ data, context }) => {
     const { supabase, userId } = context;
-    const patch = { ...data, exam_date: data.exam_date || null };
+    const patch = Object.fromEntries(Object.entries({ ...data, exam_date: data.exam_date || null }).filter(([, v]) => v !== undefined));
     const { data: updated, error } = await supabase
       .from("profiles")
-      .update(patch)
+      .update(patch as never)
       .eq("id", userId)
       .select("*")
       .single();
@@ -160,7 +160,7 @@ type GeneratedQuestion = {
   options: string[];
   correct_option: number;
   explanation: string;
-  shortcut?: string | null;
+  shortcut?: string | null | undefined;
 };
 
 function extractJson(text: string): unknown {
@@ -465,7 +465,7 @@ export const setMistakeState = createServerFn({ method: "POST" })
     if (data.errorType) patch["error_type"] = data.errorType;
     const { error } = await context.supabase
       .from("mistakes")
-      .update(patch)
+      .update(patch as never)
       .eq("id", data.mistakeId)
       .eq("user_id", context.userId);
     if (error) throw new Error(error.message);
