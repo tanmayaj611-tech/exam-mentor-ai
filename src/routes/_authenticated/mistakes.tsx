@@ -1,3 +1,4 @@
+import { MathBlock, MathText } from "@/components/math-text";
 import { ErrorBlock, LoadingBlock, PageTitle, SUBJECT_NAMES } from "@/components/page-states";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -52,11 +53,11 @@ function Mistakes() {
               <div className="text-xs text-muted-foreground">
                 {new Date(r.created_at).toLocaleDateString()} · {SUBJECT_NAMES[r.subject_id ?? "other"] ?? r.subject_id} · {r.topic}
               </div>
-              <p className="mt-2 font-medium">{r.question}</p>
+              <p className="mt-2 font-medium"><MathText>{r.question}</MathText></p>
               <p className="mt-2 text-sm">
-                You: <span className="text-destructive">{r.student_answer}</span> · Correct: <b>{r.correct_answer}</b>
+                You: <span className="text-destructive"><MathText>{r.student_answer}</MathText></span> · Correct: <b><MathText>{r.correct_answer}</MathText></b>
               </p>
-              {r.explanation && <p className="mt-2 whitespace-pre-wrap text-sm text-muted-foreground">{r.explanation}</p>}
+              {r.explanation && <MathBlock className="mt-2 text-sm text-muted-foreground">{r.explanation}</MathBlock>}
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 <Select value={r.error_type} onValueChange={(v) => m.mutate({ mistakeId: r.id, errorType: v as (typeof TYPES)[number] })}>
                   <SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
