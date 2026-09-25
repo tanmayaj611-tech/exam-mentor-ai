@@ -31,8 +31,7 @@ function renderMath(value: string, display: boolean): string | null {
       throwOnError: false,
       strict: false,
       output: "html",
-few: undefined as never,
-    } as never);
+    });
   } catch {
     return null;
   }
