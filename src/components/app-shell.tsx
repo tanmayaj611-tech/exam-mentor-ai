@@ -5,11 +5,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
   BookOpenCheck,
+  CalendarDays,
   GraduationCap,
   LayoutDashboard,
   ListChecks,
   LogOut,
   MessageCircle,
+  RefreshCw,
   Settings,
   TrendingUp,
 } from "lucide-react";
@@ -19,6 +21,8 @@ const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/coach", label: "Study Now", icon: MessageCircle },
   { to: "/practice", label: "Practice", icon: BookOpenCheck },
+  { to: "/revision", label: "Revision", icon: RefreshCw },
+  { to: "/study-plan", label: "Plan", icon: CalendarDays },
   { to: "/mistakes", label: "Mistakes", icon: ListChecks },
   { to: "/progress", label: "Progress", icon: TrendingUp },
   { to: "/settings", label: "Settings", icon: Settings },

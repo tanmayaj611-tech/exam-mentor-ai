@@ -155,7 +155,7 @@ function RevisionPage() {
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => navigate({ to: "/coach", search: { mode: "coach" } })}
+                  onClick={() => navigate({ to: "/coach" })}
                 >
                   Learn it with the coach
                 </Button>
