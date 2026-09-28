@@ -175,6 +175,7 @@ export type Database = {
           position: number
           question: string
           quiz_id: string
+          section: string | null
           shortcut: string | null
           student_answer: number | null
           topic: string | null
@@ -191,6 +192,7 @@ export type Database = {
           position: number
           question: string
           quiz_id: string
+          section?: string | null
           shortcut?: string | null
           student_answer?: number | null
           topic?: string | null
@@ -207,6 +209,7 @@ export type Database = {
           position?: number
           question?: string
           quiz_id?: string
+          section?: string | null
           shortcut?: string | null
           student_answer?: number | null
           topic?: string | null
@@ -230,10 +233,14 @@ export type Database = {
           difficulty: number
           id: string
           incorrect_count: number
+          kind: string
           mode: string
+          negative_marking: number
+          pattern: string | null
           status: string
           subject_id: string | null
           submitted_at: string | null
+          time_limit_seconds: number | null
           time_taken_seconds: number | null
           topic: string
           total_questions: number
@@ -247,10 +254,14 @@ export type Database = {
           difficulty?: number
           id?: string
           incorrect_count?: number
+          kind?: string
           mode?: string
+          negative_marking?: number
+          pattern?: string | null
           status?: string
           subject_id?: string | null
           submitted_at?: string | null
+          time_limit_seconds?: number | null
           time_taken_seconds?: number | null
           topic: string
           total_questions?: number
@@ -264,10 +275,14 @@ export type Database = {
           difficulty?: number
           id?: string
           incorrect_count?: number
+          kind?: string
           mode?: string
+          negative_marking?: number
+          pattern?: string | null
           status?: string
           subject_id?: string | null
           submitted_at?: string | null
+          time_limit_seconds?: number | null
           time_taken_seconds?: number | null
           topic?: string
           total_questions?: number
