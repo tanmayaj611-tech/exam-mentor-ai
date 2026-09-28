@@ -65,6 +65,12 @@ function Dashboard() {
           <Button asChild variant="outline">
             <Link to="/practice">Practice set</Link>
           </Button>
+          <Button asChild variant="outline">
+            <Link to="/revision">Revision</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/study-plan">Today's plan</Link>
+          </Button>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -107,7 +113,9 @@ function Dashboard() {
           )}
         </div>
       </div>
-      <p className="text-xs text-muted-foreground">Upcoming mock test: full mock tests are coming soon — use practice sets in test mode meanwhile.</p>
+      <p className="text-xs text-muted-foreground">
+        Weekly mock: use a 10-question practice set in timed test mode every Sunday until full sectional mocks are added.
+      </p>
     </div>
   );
 }

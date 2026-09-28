@@ -5,11 +5,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
   BookOpenCheck,
+  CalendarDays,
   GraduationCap,
   LayoutDashboard,
   ListChecks,
   LogOut,
   MessageCircle,
+  RefreshCw,
   Settings,
   TrendingUp,
 } from "lucide-react";
@@ -19,6 +21,8 @@ const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/coach", label: "Study Now", icon: MessageCircle },
   { to: "/practice", label: "Practice", icon: BookOpenCheck },
+  { to: "/revision", label: "Revision", icon: RefreshCw },
+  { to: "/study-plan", label: "Plan", icon: CalendarDays },
   { to: "/mistakes", label: "Mistakes", icon: ListChecks },
   { to: "/progress", label: "Progress", icon: TrendingUp },
   { to: "/settings", label: "Settings", icon: Settings },
@@ -69,7 +73,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-5 md:pb-10">{children}</main>
 
       <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-border bg-background/95 backdrop-blur md:hidden">
-        <div className="grid grid-cols-6">
+        <div className="grid grid-cols-4">
           {NAV.map((item) => {
             const Icon = item.icon;
             const active = pathname.startsWith(item.to);
