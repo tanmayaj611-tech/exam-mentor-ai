@@ -2,13 +2,7 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-import {
-  COACH_MODEL,
-  COACH_PROVIDER_OPTIONS,
-  createLovableAiGatewayRunIdFetch,
-  createLovableResponsesProvider,
-} from "./ai-gateway.server";
-import { DIFFICULTY_LABELS } from "./coach-prompt";
+import { generateQuestions } from "./question-gen.server";
 
 /* ------------------------------------------------------------------ profile */
 
