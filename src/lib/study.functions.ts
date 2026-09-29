@@ -219,7 +219,7 @@ export const getQuiz = createServerFn({ method: "GET" })
 
     const { data: rows, error: qError } = await supabase
       .from("quiz_questions")
-      .select("id, position, question, options, difficulty, topic, student_answer, is_correct, correct_option, explanation, shortcut")
+      .select("id, position, question, options, difficulty, topic, section, student_answer, is_correct, correct_option, explanation, shortcut")
       .eq("quiz_id", data.quizId)
       .order("position");
     if (qError) throw new Error(qError.message);
@@ -234,6 +234,7 @@ export const getQuiz = createServerFn({ method: "GET" })
         options: (Array.isArray(row.options) ? row.options : []) as string[],
         difficulty: row.difficulty,
         topic: row.topic,
+        section: row.section,
         student_answer: row.student_answer,
         // Answers stay hidden until the set is submitted.
         is_correct: submitted ? row.is_correct : null,
@@ -269,7 +270,7 @@ export const submitQuiz = createServerFn({ method: "POST" })
 
     const { data: rows, error: qError } = await supabase
       .from("quiz_questions")
-      .select("id, position, question, options, correct_option, explanation, topic")
+      .select("id, position, question, options, correct_option, explanation, topic, section")
       .eq("quiz_id", data.quizId)
       .order("position");
     if (qError) throw new Error(qError.message);
@@ -298,7 +299,7 @@ export const submitQuiz = createServerFn({ method: "POST" })
         const options = (Array.isArray(row.options) ? row.options : []) as string[];
         mistakeRows.push({
           user_id: userId,
-          subject_id: quiz.subject_id,
+          subject_id: row.section ?? quiz.subject_id,
           topic: row.topic ?? quiz.topic,
           question: row.question,
           student_answer: options[given] ?? String(given),
