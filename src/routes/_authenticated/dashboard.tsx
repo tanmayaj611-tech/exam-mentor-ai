@@ -114,7 +114,7 @@ function Dashboard() {
         </div>
       </div>
       <p className="text-xs text-muted-foreground">
-        Weekly mock: use a 10-question practice set in timed test mode every Sunday until full sectional mocks are added.
+        Weekly mock: take a full sectional mock from the Mock Tests page every Sunday.
       </p>
     </div>
   );
