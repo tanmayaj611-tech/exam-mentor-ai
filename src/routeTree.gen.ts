@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedMistakesRouteImport } from './routes/_authenticated/mistakes'
+import { Route as AuthenticatedMockTestsRouteImport } from './routes/_authenticated/mock-tests'
 import { Route as AuthenticatedProgressRouteImport } from './routes/_authenticated/progress'
 import { Route as AuthenticatedRevisionRouteImport } from './routes/_authenticated/revision'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -46,6 +47,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
 const AuthenticatedMistakesRoute = AuthenticatedMistakesRouteImport.update({
   id: '/mistakes',
   path: '/mistakes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMockTestsRoute = AuthenticatedMockTestsRouteImport.update({
+  id: '/mock-tests',
+  path: '/mock-tests',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedProgressRoute = AuthenticatedProgressRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/mistakes': typeof AuthenticatedMistakesRoute
+  '/mock-tests': typeof AuthenticatedMockTestsRoute
   '/progress': typeof AuthenticatedProgressRoute
   '/revision': typeof AuthenticatedRevisionRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/mistakes': typeof AuthenticatedMistakesRoute
+  '/mock-tests': typeof AuthenticatedMockTestsRoute
   '/progress': typeof AuthenticatedProgressRoute
   '/revision': typeof AuthenticatedRevisionRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/mistakes': typeof AuthenticatedMistakesRoute
+  '/_authenticated/mock-tests': typeof AuthenticatedMockTestsRoute
   '/_authenticated/progress': typeof AuthenticatedProgressRoute
   '/_authenticated/revision': typeof AuthenticatedRevisionRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/mistakes'
+    | '/mock-tests'
     | '/progress'
     | '/revision'
     | '/settings'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/mistakes'
+    | '/mock-tests'
     | '/progress'
     | '/revision'
     | '/settings'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/_authenticated/dashboard'
     | '/_authenticated/mistakes'
+    | '/_authenticated/mock-tests'
     | '/_authenticated/progress'
     | '/_authenticated/revision'
     | '/_authenticated/settings'
@@ -235,6 +247,13 @@ declare module '@tanstack/react-router' {
       path: '/mistakes'
       fullPath: '/mistakes'
       preLoaderRoute: typeof AuthenticatedMistakesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mock-tests': {
+      id: '/_authenticated/mock-tests'
+      path: '/mock-tests'
+      fullPath: '/mock-tests'
+      preLoaderRoute: typeof AuthenticatedMockTestsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/progress': {
@@ -306,6 +325,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMistakesRoute: typeof AuthenticatedMistakesRoute
+  AuthenticatedMockTestsRoute: typeof AuthenticatedMockTestsRoute
   AuthenticatedProgressRoute: typeof AuthenticatedProgressRoute
   AuthenticatedRevisionRoute: typeof AuthenticatedRevisionRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
@@ -319,6 +339,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedMistakesRoute: AuthenticatedMistakesRoute,
+  AuthenticatedMockTestsRoute: AuthenticatedMockTestsRoute,
   AuthenticatedProgressRoute: AuthenticatedProgressRoute,
   AuthenticatedRevisionRoute: AuthenticatedRevisionRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,

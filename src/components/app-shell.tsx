@@ -9,6 +9,7 @@ import {
   GraduationCap,
   LayoutDashboard,
   ListChecks,
+  Timer,
   LogOut,
   MessageCircle,
   RefreshCw,
@@ -16,11 +17,13 @@ import {
   TrendingUp,
 } from "lucide-react";
 import type { ReactNode } from "react";
+import { useT } from "@/lib/i18n";
 
 const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/coach", label: "Study Now", icon: MessageCircle },
   { to: "/practice", label: "Practice", icon: BookOpenCheck },
+  { to: "/mock-tests", label: "Mocks", icon: Timer },
   { to: "/revision", label: "Revision", icon: RefreshCw },
   { to: "/study-plan", label: "Plan", icon: CalendarDays },
   { to: "/mistakes", label: "Mistakes", icon: ListChecks },
@@ -32,6 +35,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const t = useT();
 
   async function signOut() {
     await queryClient.cancelQueries();
@@ -60,11 +64,11 @@ export function AppShell({ children }: { children: ReactNode }) {
                   pathname.startsWith(item.to) && "bg-primary/10 text-primary",
                 )}
               >
-                {item.label}
+                {t(item.label)}
               </Link>
             ))}
           </nav>
-          <Button variant="ghost" size="icon" className="ml-auto md:ml-0" onClick={signOut} aria-label="Sign out">
+          <Button variant="ghost" size="icon" className="ml-auto md:ml-0" onClick={signOut} aria-label={t("Sign out")}>
             <LogOut />
           </Button>
         </div>
@@ -73,7 +77,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-5 md:pb-10">{children}</main>
 
       <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-border bg-background/95 backdrop-blur md:hidden">
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-5">
           {NAV.map((item) => {
             const Icon = item.icon;
             const active = pathname.startsWith(item.to);
@@ -87,7 +91,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 )}
               >
                 <Icon className="size-4" />
-                {item.label}
+                {t(item.label)}
               </Link>
             );
           })}
