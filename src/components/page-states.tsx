@@ -26,10 +26,11 @@ export function ErrorBlock({ onRetry, message }: { onRetry?: () => void; message
 }
 
 export function PageTitle({ title, subtitle }: { title: string; subtitle?: string }) {
+  const t = useT();
   return (
     <div className="mb-5">
-      <h1 className="font-display text-2xl font-bold">{title}</h1>
-      {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
+      <h1 className="font-display text-2xl font-bold">{t(title)}</h1>
+      {subtitle && <p className="mt-1 text-sm text-muted-foreground">{t(subtitle)}</p>}
     </div>
   );
 }
