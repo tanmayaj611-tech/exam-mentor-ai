@@ -38,8 +38,8 @@ export function applyPublicSupabaseEnvFallback() {
   const proc = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process;
   if (!proc?.env) return;
   const { url, key } = resolvePublicSupabaseEnv(proc.env, {
-    url: import.meta.env.VITE_SUPABASE_URL as string | undefined,
-    key: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined,
+    url: import.meta.env['VITE_SUPABASE_URL'] as string | undefined,
+    key: import.meta.env['VITE_SUPABASE_PUBLISHABLE_KEY'] as string | undefined,
   });
   if (url) proc.env["SUPABASE_URL"] = url;
   if (key) proc.env["SUPABASE_PUBLISHABLE_KEY"] = key;
