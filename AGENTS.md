@@ -11,3 +11,4 @@
 
 - Mock tests reuse quizzes/quiz_questions (kind=mock, section per question) — one scoring and review path for practice and mocks.
 - UI Marathi labels live in src/lib/i18n.ts keyed by English text — missing keys fall back to English safely.
+- Server entry (src/server.ts) imports src/lib/server-env.ts first — fills SUPABASE_URL/PUBLISHABLE_KEY from public build-time VITE_ values when the host's runtime env lacks them (Netlify scope issues).
