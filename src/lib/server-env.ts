@@ -45,4 +45,3 @@ export function applyPublicSupabaseEnvFallback() {
   if (key) proc.env["SUPABASE_PUBLISHABLE_KEY"] = key;
 }
 
-applyPublicSupabaseEnvFallback();
