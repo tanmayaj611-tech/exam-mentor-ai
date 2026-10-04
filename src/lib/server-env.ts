@@ -25,8 +25,8 @@ export function isValidHttpUrl(value: string | undefined): boolean {
 
 export function resolvePublicSupabaseEnv(
   runtime: Record<string, string | undefined>,
-  buildTime: { url?: string; key?: string },
-): { url?: string; key?: string } {
+  buildTime: { url?: string | undefined; key?: string | undefined },
+): { url: string | undefined; key: string | undefined } {
   const runtimeUrl = clean(runtime["SUPABASE_URL"]);
   const buildUrl = clean(buildTime.url);
   const url = isValidHttpUrl(runtimeUrl) ? runtimeUrl : isValidHttpUrl(buildUrl) ? buildUrl : undefined;
